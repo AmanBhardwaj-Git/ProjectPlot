@@ -96,7 +96,7 @@ const App = () => {
             type="text"
             value={boxName}
             onChange={(e) => setBoxName(e.target.value)}
-            className="w-full p-3 border border-teal-500 rounded-lg mb-2 bg-gray-700 text-yellow-200 text-xl placeholder-gray-400"
+            className="w-full p-3 border border-teal-500 rounded-lg mb-2 bg-gray-700 text-yellow-200 placeholder-gray-400"
             placeholder="Enter Person Name"
             required
           />
