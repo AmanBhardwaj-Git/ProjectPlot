@@ -53,7 +53,11 @@ const App = () => {
 
     const plotArea = avgLength * avgBreadth;
 
-    return plotArea.toFixed(2);
+    return {
+      sqFeet: plotArea.toFixed(2),
+      gaj: (plotArea * 0.112188).toFixed(2),
+      dismil: (plotArea * 0.0023).toFixed(2),
+    };
   };
 
   const saveResult = () => {
@@ -62,7 +66,7 @@ const App = () => {
       return;
     }
     const area = calculateArea();
-    if (area) {
+    if (area.sqFeet) {
       setSavedResults([...savedResults, { name: boxName, area }]);
       setBoxName("");
       setShowArea(false);
@@ -96,7 +100,7 @@ const App = () => {
             type="text"
             value={boxName}
             onChange={(e) => setBoxName(e.target.value)}
-            className="w-full p-3 border border-teal-500 rounded-lg mb-2 bg-gray-700 text-yellow-200 placeholder-gray-400"
+              className="w-full p-3 border border-teal-500 rounded-lg mb-2 bg-gray-700 text-yellow-200 placeholder-gray-400"
             placeholder="Enter Person Name"
             required
           />
@@ -143,9 +147,11 @@ const App = () => {
           Calculate Area
         </button>
         {showArea && (
-          <p className="text-teal-400 mt-4">
-            Avg Plot Area = {calculateArea()} sq. feet
-          </p>
+          <div className="mt-4 text-teal-400">
+            <p>Average Plot Area = {calculateArea().sqFeet} sq. feet</p>
+            <p>{calculateArea().gaj} gaj</p>
+            <p>{calculateArea().dismil} dismil</p>
+          </div>
         )}
         <button
           onClick={clearInputs}
@@ -180,14 +186,15 @@ const App = () => {
                     Delete
                   </button>
                 </div>
-                <p className="text-blue-200">{result.area} sq. feet</p>
+                <p className="text-blue-200">{result.area.sqFeet} sq. feet</p>
+                <p className="text-blue-200">{result.area.gaj} gaj</p>
+                <p className="text-blue-200">{result.area.dismil} dismil</p>
               </div>
             ))}
-           
           </div>
         </div>
       )}
-       <div className="text-pink-400  font-bold">
+        <div className="text-pink-400  font-bold">
               Project By Aman Bhardwaj
             </div>
     </div>
